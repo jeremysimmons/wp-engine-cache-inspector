@@ -1,0 +1,23 @@
+WP Engine Cache Inspector — Permission Justifications
+
+webRequest justification
+
+Required to inspect the HTTP response headers of the top-level page being loaded. The extension reads cache-related headers such as x-cache, x-pass-why, age, cache-control, and cf-cache-status to determine whether the current page was served from cache and calculate cache age and remaining TTL. The extension does not modify, block, redirect, or transmit requests.
+
+tabs justification
+
+Required to associate captured cache information with the currently active browser tab, display the current page hostname in the extension popup, and support the user-initiated Reload Page button. The extension does not collect tab history or transmit tab information externally.
+
+storage justification
+
+Required to temporarily store the cache diagnostic result for each open tab so the extension popup can display the response headers and calculated cache status after the page load completes. Only Chrome session storage is used. The information is temporary and is not transmitted externally.
+
+Host permission justification
+
+Access to all HTTP and HTTPS hosts is required because the extension is a general-purpose cache diagnostic tool intended to inspect the currently visited website, including WP Engine-hosted sites and sites using CDNs such as Cloudflare. Host access is used only to observe response headers for top-level page requests. The extension does not read page contents, inject scripts, modify requests, or transmit browsing data.
+
+Remote code
+
+Select: No, I am not using remote code
+
+Justification: All JavaScript used by the extension is packaged with the extension. It does not load external JavaScript, use eval(), or execute remotely hosted code.

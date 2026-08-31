@@ -1,0 +1,13 @@
+Privacy Policy — WP Engine Cache Inspector
+
+WP Engine Cache Inspector is a browser extension that displays cache-related diagnostic information for the web page currently being viewed.
+
+The extension reads HTTP response headers such as Cache-Control, Age, X-Cache, X-Pass-Why, and CF-Cache-Status to determine cache status, cache age, TTL, and related diagnostic information.
+
+The extension does not collect, transmit, sell, or share personal information or browsing data.
+
+All processing occurs locally in the user's browser. Cache diagnostic information may be stored temporarily using Chrome session storage so it can be displayed in the extension popup. This data is discarded when the browser session ends.
+
+The extension does not use analytics, advertising, tracking, remote code, or external APIs.
+
+If you have questions about this privacy policy, contact the extension publisher through the contact information provided on the Chrome Web Store listing.

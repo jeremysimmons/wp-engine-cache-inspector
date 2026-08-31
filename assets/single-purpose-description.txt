@@ -1,0 +1,1 @@
+Displays cache status and cache-related response information for the current web page, including WP Engine cache HIT/MISS/BYPASS status, cache age, TTL, remaining cache time, and cache bypass reasons.

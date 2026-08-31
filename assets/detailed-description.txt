@@ -1,0 +1,23 @@
+WP Engine Cache Inspector helps developers, site administrators, and support teams quickly understand how the current page is being cached.
+
+The extension inspects cache-related HTTP response headers for the page you are viewing and presents the important information in a simple Chrome toolbar popup. It is designed especially for sites hosted on WP Engine, while also recognizing common cache signals from CDNs and reverse proxies such as Cloudflare.
+
+WP Engine Cache Inspector can display:
+
+- Cache HIT, MISS, BYPASS, and other cache states
+- WP Engine cache headers such as X-Cache
+- WP Engine cache bypass reasons from X-Pass-Why
+- Cache age from the Age response header
+- Cache TTL from Cache-Control, including max-age and s-maxage
+- Estimated remaining cache lifetime
+- Cloudflare cache status from CF-Cache-Status
+- Browser cache indicators when available
+- Relevant diagnostic headers including Cache-Control, Via, Vary, ETag, Expires, Last-Modified, and server information
+
+A compact toolbar badge provides an at-a-glance indication of the current page's cache state, such as HIT, MISS, or BYPASS. Clicking the extension icon opens a more detailed report showing cache age, configured TTL, remaining freshness time, cache layer, bypass reason, and the relevant response headers.
+
+The extension also includes a Copy Report feature that makes it easy to share cache diagnostic information with coworkers or include it in support and troubleshooting requests.
+
+WP Engine Cache Inspector operates entirely within the browser. It does not send browsing information, response headers, or diagnostic data to an external service. It contains no analytics, advertising, telemetry, tracking, or remote code.
+
+The extension is intended for web development, troubleshooting, performance testing, and verifying that caching configuration is behaving as expected.

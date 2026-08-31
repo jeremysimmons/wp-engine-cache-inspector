@@ -1,0 +1,11 @@
+Chrome Web Store — Unlisted Publishing
+
+1. Open the Chrome Web Store Developer Dashboard.
+2. Create a new item and upload the extension ZIP.
+3. Complete the required Store Listing fields.
+4. Complete the Privacy section and paste the permission justifications from permission-justifications.txt.
+5. Under Distribution, set Visibility to Unlisted.
+6. Submit for review.
+7. After approval, share the Chrome Web Store URL with coworkers.
+
+An unlisted extension still requires a store listing, but it does not normally appear in Chrome Web Store search results.
