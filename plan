@@ -1,0 +1,116 @@
+Yes. The best current option is CRXJS + Vite.
+
+CRXJS is specifically built for Chrome/Chromium extension development and gives you hot reload/HMR while developing. It supports Manifest V3, content scripts, background service workers, popup/options pages, and frameworks like Vue/React—or plain JS. ([CRXJS][1])
+
+For your WP Engine cache extension, I’d use:
+
+```text
+Vite
++
+@crxjs/vite-plugin
++
+plain JS/TypeScript
+```
+
+Setup is basically:
+
+```bash
+npm i -D vite @crxjs/vite-plugin
+```
+
+Then:
+
+```bash
+npm run dev
+```
+
+CRXJS watches your files and updates the extension automatically. Content scripts support Vite HMR, and changing a background service worker causes the extension to reload automatically. ([CRXJS][2])
+
+A minimal `package.json`:
+
+```json
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "latest",
+    "vite": "latest"
+  }
+}
+```
+
+`vite.config.js`:
+
+```js
+import { defineConfig } from 'vite'
+import { crx } from '@crxjs/vite-plugin'
+import manifest from './manifest.config.js'
+
+export default defineConfig({
+  plugins: [
+    crx({ manifest })
+  ]
+})
+```
+
+And CRXJS can generate/use your Manifest V3 configuration directly from JavaScript/TypeScript. Their current getting-started documentation uses essentially this setup. ([CRXJS][3])
+
+For the extension we just made, this would be a substantial improvement over manually going to:
+
+```text
+chrome://extensions
+→ Reload
+→ refresh target page
+```
+
+You'd edit something like:
+
+```text
+src/content.js
+```
+
+save it, and CRXJS/Vite pushes the change into Chrome automatically.
+
+One caveat: certain timing-sensitive `document_start` IIFE content scripts can't be hot-swapped in place; CRXJS rebuilds them but the page needs to reload/navigation before the new script executes. Normal content scripts do get HMR. ([CRXJS][4])
+
+Chrome's official extension documentation is here as the underlying API reference. ([Chrome for Developers][5])
+
+For your cache-inspector extension specifically, I'd convert it to this structure:
+
+```text
+wpengine-cache-inspector/
+├── src/
+│   ├── background.js
+│   ├── content.js
+│   ├── popup.js
+│   └── popup.html
+├── icons/
+├── manifest.config.js
+├── vite.config.js
+└── package.json
+```
+
+Then development becomes just:
+
+```bash
+npm run dev
+```
+
+and production:
+
+```bash
+npm run build
+```
+
+The `dist/` directory is what you'd ZIP for your unlisted Chrome Web Store release.
+
+I can also convert the extension we just built to CRXJS/Vite so you have this workflow out of the box.
+
+[1]: https://crxjs.dev/?utm_source=chatgpt.com "CRXJS - CRXJS"
+[2]: https://crxjs.dev/concepts/background/?utm_source=chatgpt.com "Background - CRXJS"
+[3]: https://crxjs.dev/guide/installation/from-scratch/?utm_source=chatgpt.com "From Scratch - CRXJS"
+[4]: https://crxjs.dev/concepts/content/?utm_source=chatgpt.com "Content Scripts - CRXJS"
+[5]: https://developer.chrome.com/docs/extensions?utm_source=chatgpt.com "Chrome Extensions  |  Chrome for Developers"

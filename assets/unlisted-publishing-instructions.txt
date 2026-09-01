@@ -1,7 +1,7 @@
 Chrome Web Store — Unlisted Publishing
 
 1. Open the Chrome Web Store Developer Dashboard.
-2. Create a new item and upload the extension ZIP.
+2. Run `npm run build`, zip the `dist/` folder, and upload that ZIP.
 3. Complete the required Store Listing fields.
 4. Complete the Privacy section and paste the permission justifications from permission-justifications.txt.
 5. Under Distribution, set Visibility to Unlisted.

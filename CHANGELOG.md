@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0 — 2026-08-31
+
+- Vite + CRXJS toolchain: `npm run dev` for HMR, `npm run build` emits `dist/` for store ZIP.
+
 ## 1.2.0 — 2026-08-31
 
 - Cache bust: request the current URL with `_={epoch_ms}` (keeps other query params and the hash).
