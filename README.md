@@ -30,10 +30,18 @@ Vite + CRXJS watches files and updates the loaded extension. Popup changes hot-r
 
 ## Production
 ```bash
+npm run package
+```
+
+Builds `dist/` and writes `wp-engine-cache-inspector-<version>.zip` (manifest at zip root) for Chrome Web Store upload.
+
+Upload the zip to the existing item `onenpcgedbffidbkpeamobmhlnfgaeng`. Listing details are unchanged. See `assets/unlisted-publishing-instructions.txt`.
+
+```bash
 npm run build
 ```
 
-Zip the `dist/` directory for an unlisted Chrome Web Store release.
+Build only, no zip.
 
 ## Local install (built `dist/`)
 1. Unzip.

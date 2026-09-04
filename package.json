@@ -6,7 +6,10 @@
   "description": "Shows WP Engine and HTTP cache status, age, TTL, bypass reasons, and relevant response headers for the current page.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "zip": "node scripts/package.js",
+    "package": "npm run build && npm run zip",
+    "clean": "node scripts/clean.js"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.7.1",

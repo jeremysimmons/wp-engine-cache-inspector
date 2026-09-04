@@ -1,11 +1,14 @@
 Chrome Web Store — Unlisted Publishing
 
-1. Open the Chrome Web Store Developer Dashboard.
-2. Run `npm run build`, zip the `dist/` folder, and upload that ZIP.
-3. Complete the required Store Listing fields.
-4. Complete the Privacy section and paste the permission justifications from permission-justifications.txt.
-5. Under Distribution, set Visibility to Unlisted.
-6. Submit for review.
-7. After approval, share the Chrome Web Store URL with coworkers.
+Item ID: onenpcgedbffidbkpeamobmhlnfgaeng
+https://chromewebstore.google.com/detail/onenpcgedbffidbkpeamobmhlnfgaeng
 
-An unlisted extension still requires a store listing, but it does not normally appear in Chrome Web Store search results.
+Upload as a new version of this existing item. Do not click Add new item.
+Store listing, screenshots, privacy, permission justifications, and visibility stay on the item and do not need to be re-entered.
+
+1. Run `npm run package`.
+2. Open the existing item in the Chrome Web Store Developer Dashboard.
+3. On the Package tab, upload `wp-engine-cache-inspector-<version>.zip`.
+4. Submit for review.
+
+The zip omits `key` (Chrome Web Store rejects it). `dist/` keeps `key` so Load unpacked uses the same ID.
