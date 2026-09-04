@@ -6,6 +6,7 @@ import pkg from '../package.json' with { type: 'json' }
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const targets = [
   resolve(root, 'dist'),
+  resolve(root, 'dist-firefox'),
   resolve(root, '.package-tmp'),
   resolve(root, `${pkg.name}-${pkg.version}.zip`),
   ...readdirSync(root)

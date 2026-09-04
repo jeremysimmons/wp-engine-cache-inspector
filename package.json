@@ -6,9 +6,13 @@
   "description": "Shows WP Engine and HTTP cache status, age, TTL, bypass reasons, and relevant response headers for the current page.",
   "scripts": {
     "dev": "vite",
+    "dev:firefox": "vite --mode firefox",
     "build": "vite build",
+    "build:firefox": "vite build --mode firefox",
     "zip": "node scripts/package.js",
+    "zip:firefox": "node scripts/package.js firefox",
     "package": "npm run build && npm run zip",
+    "package:firefox": "npm run build:firefox && npm run zip:firefox",
     "clean": "node scripts/clean.js"
   },
   "devDependencies": {

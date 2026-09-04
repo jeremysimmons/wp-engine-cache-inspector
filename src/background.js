@@ -39,11 +39,13 @@ function derive(headers,statusCode,url,fromCache,cookieHeader=""){
 }
 function badgeFor(status){ return ({HIT:'HIT',MISS:'MISS',BYPASS:'BYP',BROWSER:'LOCAL',DYNAMIC:'DYN',STALE:'STL',EXPIRED:'EXP',REVALIDATED:'REVAL',UPDATING:'UPD'})[status]||'?'; }
 
+const extraHeaders=/Firefox\//.test(navigator.userAgent)?[]:['extraHeaders'];
+
 chrome.webRequest.onBeforeSendHeaders.addListener((details)=>{
  if(details.type!=='main_frame'||details.tabId<0)return;
  const headers=headersToObject(details.requestHeaders);
  pendingCookies.set(details.requestId,headers.cookie||'');
-},{urls:['<all_urls>'],types:['main_frame']},['requestHeaders','extraHeaders']);
+},{urls:['<all_urls>'],types:['main_frame']},['requestHeaders',...extraHeaders]);
 
 chrome.webRequest.onHeadersReceived.addListener((details)=>{
  if(details.type!=='main_frame'||details.tabId<0)return;
@@ -54,7 +56,7 @@ chrome.webRequest.onHeadersReceived.addListener((details)=>{
  chrome.storage.session.set({[`tab_${details.tabId}`]:data}).catch(()=>{});
  chrome.action.setBadgeText({tabId:details.tabId,text:badgeFor(data.status)});
  chrome.action.setTitle({tabId:details.tabId,title:`WP Engine Cache Inspector: ${data.status}${data.remaining!==null?` • ${data.remaining}s remaining`:''}`});
-},{urls:['<all_urls>'],types:['main_frame']},['responseHeaders','extraHeaders']);
+},{urls:['<all_urls>'],types:['main_frame']},['responseHeaders',...extraHeaders]);
 
 chrome.webRequest.onErrorOccurred.addListener((details)=>{ pendingCookies.delete(details.requestId); },{urls:['<all_urls>'],types:['main_frame']});
 chrome.tabs.onRemoved.addListener((tabId)=>{pageState.delete(tabId);chrome.storage.session.remove(`tab_${tabId}`).catch(()=>{});});

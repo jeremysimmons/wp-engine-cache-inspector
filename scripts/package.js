@@ -4,14 +4,17 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import pkg from '../package.json' with { type: 'json' }
 
+const target = process.argv[2] === 'firefox' ? 'firefox' : 'chrome'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const dist = resolve(root, 'dist')
+const dist = resolve(root, target === 'firefox' ? 'dist-firefox' : 'dist')
 const staging = resolve(root, '.package-tmp')
-const zipName = `${pkg.name}-${pkg.version}.zip`
+const zipName = target === 'firefox'
+  ? `${pkg.name}-${pkg.version}-firefox.zip`
+  : `${pkg.name}-${pkg.version}.zip`
 const zipPath = resolve(root, zipName)
 
 if (!existsSync(dist)) {
-  console.error('dist/ missing')
+  console.error(`${target === 'firefox' ? 'dist-firefox' : 'dist'}/ missing`)
   process.exit(1)
 }
 
